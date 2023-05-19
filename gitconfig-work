@@ -1,0 +1,4 @@
+[user]
+    email = YOUR_WORK_EMAIL
+[core]
+   sshCommand = "ssh -i PATH_OF_YOUR_WORK_SSH_KEY"
