@@ -1,68 +1,68 @@
 [color]
-branch = auto
-diff = auto
-interactive = auto
-status = auto
-ui = auto
+    branch = auto
+    diff = auto
+    interactive = auto
+    status = auto
+    ui = auto
 
 [color "branch"]
-current = green
-remote = yellow
+    current = green
+    remote = yellow
 
 [core]
-pager = less -FRSX
-editor = code --wait
+    pager = less -FRSX
+    editor = code --wait
 
 [alias]
-# Set remotes/origin/HEAD -> defaultBranch (copied from https://stackoverflow.com/a/67672350/14870317)
-remoteSetHead = remote set-head origin --auto
+    # Set remotes/origin/HEAD -> defaultBranch (copied from https://stackoverflow.com/a/67672350/14870317)
+    remoteSetHead = remote set-head origin --auto
 
-# Get default branch name (copied from https://stackoverflow.com/a/67672350/14870317)
-defaultBranch = !git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4
+    # Get default branch name (copied from https://stackoverflow.com/a/67672350/14870317)
+    defaultBranch = !git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4
 
-# Clean merged branches (adapted from https://stackoverflow.com/a/6127884/14870317)
-sweep = !git branch --merged $(git defaultBranch) | grep -E -v " $(git defaultBranch)$" | xargs -r git branch -d && git remote prune origin
+    # Clean merged branches (adapted from https://stackoverflow.com/a/6127884/14870317)
+    sweep = !git branch --merged $(git defaultBranch) | grep -E -v " $(git defaultBranch)$" | xargs -r git branch -d && git remote prune origin
 
-# http://www.jukie.net/bart/blog/pimping-out-git-log
-lg = log --graph --all --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)%an%Creset %C(yellow)%d%Creset'
+    # http://www.jukie.net/bart/blog/pimping-out-git-log
+    lg = log --graph --all --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)%an%Creset %C(yellow)%d%Creset'
 
-# Serve local repo. http://coderwall.com/p/eybtga
-# Then other can access via `git clone git://#{YOUR_IP_ADDRESS}/
-serve = !git daemon --reuseaddr --verbose --base-path=. --export-all ./.git
+    # Serve local repo. http://coderwall.com/p/eybtga
+    # Then other can access via `git clone git://#{YOUR_IP_ADDRESS}/
+    serve = !git daemon --reuseaddr --verbose --base-path=. --export-all ./.git
 
-# Checkout to defaultBranch
-m = !git checkout $(git defaultBranch)
+    # Checkout to defaultBranch
+    m = !git checkout $(git defaultBranch)
 
-# Removes a file from the index
-unstage = reset HEAD --
+    # Removes a file from the index
+    unstage = reset HEAD --
 
 [help]
-autocorrect = 1
+    autocorrect = 1
 
 [push]
-default = simple
+    default = simple
 
 [pull]
-rebase = true
+    rebase = true
 
 [init]
-defaultBranch = main
+    defaultBranch = main
 
 [user]
-email = YOUR_EMAIL
-name = YOUR_NAME
+    email = YOUR_EMAIL
+    name = YOUR_NAME
 
 # https://git-scm.com/docs/merge-options
 [merge]
-ff = no
-commit = no
+    ff = no
+    commit = no
 
 [includeIf "gitdir/i:YOUR_WORK_REPO_NAME/"]
-path = ~/.gitconfig-work
+    path = ~/.gitconfig-work
 
 # https://shuhrat.github.io/programming/git-lfs-tips-and-tricks.html
 [filter "lfs"]
-clean = git-lfs clean -- %f
-smudge = git-lfs smudge -- %f
-process = git-lfs filter-process
-required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
